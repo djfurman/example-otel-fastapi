@@ -1,0 +1,84 @@
+[project]
+name = "otel-fastapi"
+version = "0.1.0"
+description = "Example FastAPI application with OpenTelemetry Instrumentation"
+
+authors = [
+    {name = "Daniel Furman", email="djfurman@gmail.com"},
+]
+
+maintainers = [
+    {name = "Daniel Furman", email="djfurman@gmail.com"},
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+
+    "Intended Audience :: Developers",
+
+    "Natural Language :: English",
+
+    "Operating System :: Linux",
+
+    "Programming Language :: Python :: 3",
+    "Programming Lanugage :: Python :: 3 :: ONLY",
+    "Programming Language :: Python :: 3 :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+
+    "Topic :: Software Development :: Developers",
+    "Topic :: Software Development :: Observability",
+    "Topic :: Software Development :: Open Telemetry",
+]
+
+readme = "README.md"
+
+requires-python = ">=3.11"
+
+dependencies = [
+    "fastapi[standard]>=0.115.0",
+    "opentelemetry-distro>=0.48b0",
+    "opentelemetry-exporter-otlp>=1.27.0",
+    "opentelemetry-instrumentation-asyncio>=0.48b0",
+    "opentelemetry-instrumentation-dbapi>=0.48b0",
+    "opentelemetry-instrumentation-fastapi>=0.48b0",
+    "opentelemetry-instrumentation-grpc>=0.48b0",
+    "opentelemetry-instrumentation-requests>=0.48b0",
+    "opentelemetry-instrumentation-sqlite3>=0.48b0",
+    "opentelemetry-instrumentation-threading>=0.48b0",
+    "opentelemetry-instrumentation-tortoiseorm>=0.48b0",
+    "opentelemetry-instrumentation-urllib>=0.48b0",
+    "opentelemetry-instrumentation-urllib3>=0.48b0",
+    "opentelemetry-instrumentation-wsgi>=0.48b0",
+    "opentelemetry-instrumentation>=0.48b0",
+    "uvicorn>=0.30.6",
+]
+
+[project.urls]
+Changelog = ""
+Documentation = ""
+Homepage = ""
+Source = ""
+
+[tool.coverage.run]
+omit = [
+    "tests/*",
+]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "--cov=app --cov-report term-missing"
+testpaths = ["tests"]
+
+[tool.ruff]
+select = ["B", "E", "F", "PIE"]
+ignore = ["B028", "B904", "E501"]
+
+[tool.ruff.isort]
+combine-as-imports = true
+
+[tool.uv]
+dev-dependencies = [
+    "behave>=1.2.6",
+    "pytest-cov>=5.0.0",
+    "pytest>=8.3.3",
+]
