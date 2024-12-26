@@ -1,0 +1,27 @@
+{
+  "name": "otel-fastapi",
+  "version": "1.0.0",
+  "description": "This example repository is a walk through use case for designing OTel metrics in a FastAPI application.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djfurman/example-otel-fastapi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/djfurman/example-otel-fastapi/issues"
+  },
+  "homepage": "https://github.com/djfurman/example-otel-fastapi#readme",
+  "devDependencies": {
+    "@types/k6": "^0.54.2"
+  }
+}
