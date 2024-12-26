@@ -4,21 +4,24 @@ from httpx import ASGITransport, AsyncClient
 
 from app.main import app
 
+
 @behave.given("we are running an API")
 def start_the_api(context) -> None:
     pass
 
+
 @behave.when('we {method} the "{endpoint}" endpoint')
 @async_run_until_complete()
-async def make_an_api_call_to_method_and_endpoint(context, method: str, endpoint: str) -> None:
+async def make_an_api_call_to_method_and_endpoint(
+    context, method: str, endpoint: str
+) -> None:
     context.method = method
     context.endpoint = endpoint
 
-    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
-        context.response = await ac.request(
-            method=method,
-            url=endpoint
-        )
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as ac:
+        context.response = await ac.request(method=method, url=endpoint)
 
 
 @behave.then("we should receive a {status_code:d} response")
@@ -31,7 +34,7 @@ def check_the_response(context, key: str) -> None:
     assert key in context.response.json().keys()
 
 
-@behave.then('the response key "{key}" should be {value}')
+@behave.then('the response key "{key}" should be "{value}"')
 def check_a_response_key(context, key: str, value: str) -> None:
     if value.lower() == "true":
         test_value = True

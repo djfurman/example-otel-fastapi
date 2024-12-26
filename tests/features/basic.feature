@@ -5,4 +5,4 @@ Feature: Basic API functionality
     When we GET the "/health" endpoint
     Then we should receive a 200 response
     And the response should contain "isHealthy"
-    And the response key "isHealthy" should be True
+    And the response key "isHealthy" should be "True"
