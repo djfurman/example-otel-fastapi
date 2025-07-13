@@ -62,6 +62,14 @@ Documentation = "https://github.com/djfurman/otel-fastapi"
 Homepage = "https://github.com/djfurman/otel-fastapi"
 Source = "https://github.com/djfurman/otel-fastapi"
 
+
+[tool.coverage.report]
+exclude_also = [
+    "logging.*",
+    ".*\\.set_attribute.*",
+    ".*\\.set_status.*"
+]
+
 [tool.coverage.run]
 omit = [
     "tests/*",
