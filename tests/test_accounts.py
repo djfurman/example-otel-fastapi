@@ -18,4 +18,4 @@ def test_endpoint_for_get_account_by_id(test_client: TestClient) -> None:
     assert isinstance(response_data, dict)
     assert response_data["id"] == "abc123"
     assert response_data["balance"] == -500
-    assert response_data["isCurrent"]
+    assert response_data["is_current"]

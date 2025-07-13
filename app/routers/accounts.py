@@ -3,12 +3,16 @@ import logging
 from fastapi import APIRouter, HTTPException
 from opentelemetry import trace
 
+from ..models import Account
+
 tracer = trace.get_tracer_provider().get_tracer(__name__)
 router = APIRouter()
 
 accounts = [
-    {"id": "abc123", "balance": -500, "isCurrent": True},
-    {"id": "def456", "balance": 25, "isCurrent": True},
+    Account(id="abc123", balance=-500, is_current=True),
+    Account(id="def456", balance=25, is_current=True),
+    Account(id="special-case", balance=0, is_current=False),
+    Account(id="special-case", balance=100, is_current=True),
 ]
 
 
@@ -22,10 +26,10 @@ async def get_accounts():
 @router.get("/accounts/{account_id}", tags=["accounts"])
 async def get_account(account_id: str):
     with tracer.start_as_current_span("get_account") as get_account_span:
-        logging.getLogger().debug(f"Getting account {account_id}")
-        result = [account for account in accounts if account["id"] == account_id]
+        logging.getLogger().debug(f"Getting account '{account_id}'")
+        result = [account for account in accounts if account.id == account_id]
         if len(result) == 0:
-            logging.getLogger().warning(f"Account {account_id} not found")
+            logging.getLogger().warning(f"Account '{account_id}' not found")
             get_account_span.set_status(trace.StatusCode.ERROR)
             raise HTTPException(status_code=404, detail="Account not found")
         if len(result) > 1:
